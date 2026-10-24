@@ -35,26 +35,37 @@ python bot.py
 The panel binds `0.0.0.0` and reads `PORT`, else `SERVER_PORT`, else `5000`.
 Render sets `PORT`, Botkeep sets `SERVER_PORT` — both work with no change.
 
-Set in the host's Environment panel (never in code):
+No Environment variables are required. After deploy, everything is done
+in the admin panel — no token, webhook URL or session ever goes in code:
 
-```
-TELEGRAM_BOT_TOKEN=...
-```
+1. Open `/admin` → default password `admin123` → change it on first login.
+2. Panel → Telegram token + Webhook → paste the BotFather token → Save.
+   The panel validates it with Telegram and shows the bot username.
+   The token itself is never shown again.
+3. On the same page, click **Set Webhook (auto)**. The webhook URL is
+   built automatically from the panel address you are visiting, so open
+   the panel via its public HTTPS domain first (Render URL / Botkeep
+   Domains). Polling stops automatically. Click **Delete Webhook** to go
+   back to polling.
+4. Panel → Canva session → upload `canva_session.json`.
 
-Optional: `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `CANVA_SESSION_FILE`.
+Optional env overrides (only if you prefer them): `TELEGRAM_BOT_TOKEN`,
+`ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `CANVA_SESSION_FILE`.
 
 ## Deploy
 
 ### Botkeep
 
 New workload → GitHub repo → Python → start command `python bot.py` →
-set `TELEGRAM_BOT_TOKEN` in Environment → open the panel via Domains,
-log in at `/admin`, change the default password, upload the Canva session.
+open the panel via Domains, log in at `/admin`, change the default
+password, add the Telegram token and click Set Webhook, upload the
+Canva session. No Environment variables needed.
 
 ### Render
 
 New Web Service → this repo → build `pip install -r requirements.txt` →
-start `python bot.py` → set `TELEGRAM_BOT_TOKEN`. A `render.yaml` is included.
+start `python bot.py` → open `/admin` and do the token/webhook/session
+steps above. A `render.yaml` is included.
 
 ### VPS / Docker
 

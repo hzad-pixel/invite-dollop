@@ -4,6 +4,5 @@ services:
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py
-    envVars:
-      - key: TELEGRAM_BOT_TOKEN
-        sync: false
+    # No env vars required: token, webhook and session are set in the
+    # admin panel after deploy (see README).
