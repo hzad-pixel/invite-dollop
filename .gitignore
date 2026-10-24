@@ -1,0 +1,6 @@
+canva_session.json
+admin_password.json
+.env
+__pycache__/
+*.pyc
+.venv/
