@@ -32,6 +32,9 @@ Start command everywhere is:
 python bot.py
 ```
 
+`main.py` is an identical entry point for hosts (e.g. Botkeep) whose
+default startup command is `python main.py` — it just runs `bot.py`.
+
 The panel binds `0.0.0.0` and reads `PORT`, else `SERVER_PORT`, else `5000`.
 Render sets `PORT`, Botkeep sets `SERVER_PORT` — both work with no change.
 
